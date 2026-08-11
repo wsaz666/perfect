@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdl-repopilot"
+version = "0.1.0"
+description = "Structure-aware hybrid retrieval and grounded Q&A for Verilog repositories"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+llm = ["openai>=1.40"]
+ui = ["gradio>=5"]
+pdf = ["pypdf>=5"]
+local-embeddings = ["sentence-transformers>=3"]
+dev = ["ruff>=0.6"]
+all = [
+  "openai>=1.40",
+  "gradio>=5",
+  "pypdf>=5",
+  "sentence-transformers>=3",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+hdl-repopilot = "hdl_repopilot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
